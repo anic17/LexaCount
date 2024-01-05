@@ -6,7 +6,7 @@ LexaCount is a lightweight and versatile command-line tool designed to simplify 
 
 ## Usage
 
-lexacount [-b] [-t] [-l <list file>] [file1] [file2] ...
+`lexacount [-b] [-t] [-l <list file>] [file1] [file2] ...`
 
 ### Switches
 
@@ -27,14 +27,18 @@ Display program version
 
 ### Example usages
 
-`lexacount main.c main.h`
+`lexacount main.c main.h`  
 Counts the lines of code of files `main.c` and `main.h`
 
-`lexacount -l file_names.list -t`
+`lexacount -l file_names.list -t`  
 Counts the lines of all file names inside `file_names.list` in table format
 
-`lexacount -l file_names.list include/header.h -b`
-Counts the lines of all file names inside `file_names.list` and `include/header.h`, excluding all lines containing only brackets
+`lexacount -l file_names.list include/header.h -b`  
+Counts the lines of all file names inside `file_names.list` and `include/header.h`, excluding all lines containing only brackets  
+
+## Contributing
+
+If you found a bug or want to add a new feature, don't hesitate to create a [pull request](https://github.com/anic17/LexaCount/pulls) or an [issue](https://github.com/anic17LexaCount/issues)! Contributions are greatly appreciated.
 
 **Copyright &copy; 2024 anic17 Software**
 
