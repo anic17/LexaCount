@@ -36,9 +36,32 @@ Counts the lines of all file names inside `file_names.list` in table format
 `lexacount -l file_names.list include/header.h -b`  
 Counts the lines of all file names inside `file_names.list` and `include/header.h`, excluding all lines containing only brackets  
 
+
+### Using lists
+
+Using a list file is a very useful addition to LexaCount, allowing for the automation of counting lines in a large codebase with an unlimited number of files. The list file should contain file names separated by newlines, with each line representing a single file. For example, a list file named `lines.list` would look like this:
+
+```
+src/include/main.h
+src/include/input.h
+src/main.c
+src/input.c
+make.sh
+website/index.html
+```
+By calling `lexacount -l lines.list`, LexaCount will count the lines of code for the files listed inside `lines.list` and not the lines of the list file itself. This command loads file names from lines.list and counts the lines for each specified file, streamlining the process for analyzing multiple files.
+
+## Compatibility
+
+LexaCount has been written in standard C99 without making use of any platform-specific libraries. This makes LexaCount compatible with Windows, Linux, and Mac.
+
 ## Contributing
 
 If you found a bug or want to add a new feature, don't hesitate to create a [pull request](https://github.com/anic17/LexaCount/pulls) or an [issue](https://github.com/anic17LexaCount/issues)! Contributions are greatly appreciated.
+
+## License
+
+LexaCount is distributed under the GNU GPL v3.0 license. See the [LICENSE](/LICENSE) file for details.
 
 **Copyright &copy; 2024 anic17 Software**
 
