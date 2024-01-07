@@ -1,3 +1,27 @@
+/*
+    LexaCount - A lightweight command-line tool to count source lines of code.
+
+    Description:
+        LexaCount simplifies the process of analyzing and understanding the structure
+        of source code in software projects. It provides various options to adapt to
+        different needs, such as excluding lines with only brackets or using table output.
+    
+    Copyright (c) 2024 anic17 Software
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>
+ */
+
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -5,7 +29,7 @@
 #include <errno.h>
 #include <stdbool.h>
 
-const char lexacount_version[] = "1.0";
+#include "lexacount.h"
 
 int is_quote(char *quotes_str, size_t qlen, int chr)
 {
@@ -16,8 +40,6 @@ int is_quote(char *quotes_str, size_t qlen, int chr)
     }
     return false;
 }
-
-#define is_bracket is_quote
 
 void show_version()
 {
@@ -74,6 +96,7 @@ size_t count_loc(char *filename, char **comments, char *quotes, char *brackets, 
 
     while ((chr = fgetc(count_fp)) != EOF)
     {
+        
         isFileEmpty = false;
         if (is_quote(quotes, qlen, chr))
         {
@@ -83,7 +106,7 @@ size_t count_loc(char *filename, char **comments, char *quotes, char *brackets, 
         {
             if (comment_idx >= clen - 1)
             {
-                ++(*file_comment);
+                (*file_comment)++;
                 comment_idx = 0;
                 continue;
             }
@@ -113,14 +136,14 @@ size_t count_loc(char *filename, char **comments, char *quotes, char *brackets, 
         {
             if (isLineOnlyBrackets && isLineBlank)
             {
-                ++(*file_bracket);
+                (*file_bracket)++;
             }
             else if (isLineBlank)
             {
-                ++(*file_blank);
+                (*file_blank)++;
             }
 
-            ++(*file_loc);
+            (*file_loc)++;
             isLineBlank = true;
             isLineOnlyBrackets = false;
             quoteStatus = 0;
@@ -132,13 +155,13 @@ size_t count_loc(char *filename, char **comments, char *quotes, char *brackets, 
     {
         if (isLineOnlyBrackets && isLineBlank)
         {
-            ++(*file_bracket);
+            (*file_bracket)++;
         }
         else if (isLineBlank)
         {
-            ++(*file_blank);
+            (*file_blank)++;
         }
-        ++(*file_loc);
+        (*file_loc)++;
     }
 
     fclose(count_fp);
@@ -312,11 +335,6 @@ int main(int argc, char *argv[])
     char *fspec = calloc(sizeof(char), longest_fname + 10);
     snprintf(fspec, longest_fname, "%%-%zus", longest_fname);
 
-    if (tableOutput)
-    {
-        print_table_header(fspec, excludeBrackets);
-        print_table_separator(longest_fname, excludeBrackets);
-    }
     for (size_t i = 0; i < list_fname_count; i++)
     {
         list = fopen(list_fnames[i], "rb");
@@ -325,6 +343,34 @@ int main(int argc, char *argv[])
             fprintf(stderr, "%s: %s", loc_file, strerror(errno));
             return errno;
         }
+        while (fgets(filename, sizeof filename, list)) // If someone knows a better way to avoid incorrect padding, let me know
+        {
+            if (strlen(filename) > longest_fname)
+            {
+                longest_fname = strlen(filename);
+                snprintf(fspec, longest_fname, "%%-%zus", longest_fname);
+            }
+        }
+        fclose(list);
+    }
+
+    if (tableOutput)
+    {
+        print_table_header(fspec, excludeBrackets);
+        if (list_fname_count == 0)
+            print_table_separator(longest_fname, excludeBrackets);
+    }
+
+    for (size_t i = 0; i < list_fname_count; i++)
+    {
+        list = fopen(list_fnames[i], "rb");
+        if (!list)
+        {
+            fprintf(stderr, "%s: %s", loc_file, strerror(errno));
+            return errno;
+        }
+        print_table_separator(longest_fname, excludeBrackets);
+
         while (fgets(filename, sizeof filename, list))
         {
             count_loc(filename, comments, quotechars, bracketchars, &file_loc, &file_comment_loc, &file_blank_loc, &file_bracket_loc, excludeBrackets);
