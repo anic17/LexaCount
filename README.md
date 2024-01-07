@@ -39,7 +39,7 @@ Counts the lines of all file names inside `file_names.list` and `include/header.
 
 ### Using lists
 
-Using a list file is a very useful addition to LexaCount, allowing for the automation of counting lines in a large codebase with an unlimited number of files. The list file should contain file names separated by newlines, with each line representing a single file. For example, a list file named `lines.list` would look like this:
+Using a list file is a beneficial addition to LexaCount, allowing for the automation of counting lines in a large codebase with unlimited files. The list file should contain file names separated by newlines, with each line representing a single file. For example, a list file named `lines.list` would look like this:
 
 ```
 src/include/main.h
@@ -49,7 +49,7 @@ src/input.c
 make.sh
 website/index.html
 ```
-By calling `lexacount -l lines.list`, LexaCount will count the lines of code for the files listed inside `lines.list` and not the lines of the list file itself. This command loads file names from lines.list and counts the lines for each specified file, streamlining the process for analyzing multiple files.
+By calling `lexacount -l lines.list`, LexaCount will count the lines of code for the files listed inside `lines.list` and not the lines of the list file itself. This command loads file names from lines.list and counts the lines for each specified file, streamlining the process of analyzing multiple files.
 
 ## Compatibility
 
