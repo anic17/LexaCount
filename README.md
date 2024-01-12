@@ -4,6 +4,12 @@
 
 LexaCount is a lightweight and versatile command-line tool designed to simplify counting source lines of code in software projects. Whether you're a developer reviewing codebases, a project manager tracking progress, or simply curious about code metrics, LexaCount provides an efficient way to analyze and understand the structure of your source code with various options that adapt to your needs.
 
+## Screenshot
+
+![Screenshot of LexaCount](https://raw.githubusercontent.com/anic17/LexaCount/1d163e0f6d20ecee33ccdcbc14ba2d436ead2653/res/lexacount.png)  
+
+**Screenshot of LexaCount with command line `lexacount -l lexacount.lst -b -t`**
+
 ## Usage
 
 `lexacount [-b] [-t] [-l <list file>] [file1] [file2] ...`
@@ -58,12 +64,6 @@ LexaCount has been written in standard C99 without making use of any platform-sp
 ## Contributing
 
 If you found a bug or want to add a new feature, don't hesitate to create a [pull request](https://github.com/anic17/LexaCount/pulls) or an [issue](https://github.com/anic17LexaCount/issues)! Contributions are greatly appreciated.
-
-## Screenshot
-
-![Screenshot of LexaCount](https://raw.githubusercontent.com/anic17/LexaCount/1d163e0f6d20ecee33ccdcbc14ba2d436ead2653/res/lexacount.png)  
-
-**Screenshot of LexaCount with command line `lexacount -l lexacount.lst -b -t`**
 
 ## License
 
