@@ -6,7 +6,7 @@ LexaCount is a lightweight and versatile command-line tool designed to simplify 
 
 ## Screenshot
 
-![Screenshot of LexaCount](https://raw.githubusercontent.com/anic17/LexaCount/1d163e0f6d20ecee33ccdcbc14ba2d436ead2653/res/lexacount.png)  
+![Screenshot of LexaCount](https://raw.githubusercontent.com/anic17/LexaCount/c4fdd94fc156f0e0975fba7538dfa7a6733e9d32/lexacount_2.png)  
 
 **Screenshot of LexaCount with command line `lexacount -l lexacount.lst -b -t`**
 
