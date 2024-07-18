@@ -27,7 +27,8 @@
 
 #define is_bracket is_quote
 
-const char lexacount_version[] = "1.1";
+const char lexacount_version[] = "1.2";
+
 
 int is_quote(char *quotes_str, size_t qlen, int chr);
 void show_version();

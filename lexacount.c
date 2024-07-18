@@ -5,7 +5,7 @@
         LexaCount simplifies the process of analyzing and understanding the structure
         of source code in software projects. It provides various options to adapt to
         different needs, such as excluding lines with only brackets or using table output.
-    
+
     Copyright (c) 2024 anic17 Software
 
     This program is free software: you can redistribute it and/or modify
@@ -96,7 +96,7 @@ size_t count_loc(char *filename, char **comments, char *quotes, char *brackets, 
 
     while ((chr = fgetc(count_fp)) != EOF)
     {
-        
+
         isFileEmpty = false;
         if (is_quote(quotes, qlen, chr))
         {
@@ -369,7 +369,8 @@ int main(int argc, char *argv[])
             fprintf(stderr, "%s: %s", loc_file, strerror(errno));
             return errno;
         }
-        print_table_separator(longest_fname, excludeBrackets);
+        if (tableOutput)
+            print_table_separator(longest_fname, excludeBrackets);
 
         while (fgets(filename, sizeof filename, list))
         {
