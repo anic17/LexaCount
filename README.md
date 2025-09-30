@@ -12,12 +12,12 @@ LexaCount is a lightweight and versatile command-line tool designed to simplify 
 
 ## Usage
 
-`lexacount [-b] [-t] [-l <list file>] [file1] [file2] ...`
+`lexacount [-b] [-t] [-x] [-l <list file 1>] [-l <list file 2>] ... [file1] [file2] ...`
 
 ### Switches
 
 `-b, --bracket`  
-Do not count lines containing only brackets or parenthesis
+Do not count lines containing only brackets or parentheses
 
 `-h, --help`  
 Display this help menu
@@ -30,6 +30,9 @@ Print the output using tables
 
 `-v, --version`  
 Display program version
+
+`-x, --exclude`
+Exclude files inside lists if they cannot be read; do not give error messages
 
 ### Example usages
 
@@ -69,6 +72,6 @@ If you found a bug or want to add a new feature, don't hesitate to create a [pul
 
 LexaCount is distributed under the GNU GPL v3.0 license. See the [LICENSE](/LICENSE) file for details.
 
-**Copyright &copy; 2024 anic17 Software**
+**Copyright &copy; 2025 anic17 Software**
 
 <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fanic17%2FLexaCount&count_bg=%23FFFFFF&title_bg=%23FFFFFF&icon=&icon_color=%23FFFFFF&title=hits&edge_flat=false" height=0 width=0>
